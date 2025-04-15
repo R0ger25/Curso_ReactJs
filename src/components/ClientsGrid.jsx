@@ -1,13 +1,13 @@
-import Card from "./Card";
+import Client from "./Client";
 
-const CardsGrid = ({ title, items, cols = 4, onAddToCart }) => {
+const ClientsGrid = ({ title, items, cols = 4 }) => {
   const colClass = `row-cols-1 row-cols-md-${Math.max(1, Math.floor(cols / 2))} row-cols-lg-${cols}`;
-  
+
   // Verifica se há itens para exibir
   if (!items || items.length === 0) {
     return (
       <div className="alert alert-info" role="alert">
-        Nenhum produto encontrado.
+        Nenhum cliente encontrado.
       </div>
     );
   }
@@ -21,14 +21,14 @@ const CardsGrid = ({ title, items, cols = 4, onAddToCart }) => {
         </>
       )}
       <div className={`row ${colClass} g-3`}>
-        {items.map((item) => (
-          <Card
-            key={item.id}
-            image={item.image}
-            title={item.title}
-            description={item.description}
-            price={item.price}
-            onAddToCartClick={() => onAddToCart(item)}
+        {items.map((client) => (
+          <Client
+            key={client.id}
+            nome={client.nome}
+            dataNascimento={client.dataNascimento}
+            email={client.email}
+            telefone={client.telefone}
+            foto={client.foto}
           />
         ))}
       </div>
@@ -36,4 +36,4 @@ const CardsGrid = ({ title, items, cols = 4, onAddToCart }) => {
   );
 };
 
-export default CardsGrid;
+export default ClientsGrid;
